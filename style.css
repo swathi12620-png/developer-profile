@@ -372,3 +372,224 @@ footer {
     }
 
 }
+/* FUTURISTIC BUTTON EFFECT */
+
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: 0.4s ease;
+    box-shadow: 0 0 10px #00e5ff33;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow:
+        0 0 10px #00e5ff,
+        0 0 25px #00e5ff66;
+}
+
+/* SKILL CARD ANIMATION */
+
+.skill-card {
+    transition: all 0.4s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 0 25px #00e5ff33;
+}
+
+/* PROJECT CARD GLOW */
+
+.project-card {
+    transition: all 0.4s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px #00e5ff44;
+    border-color: #00e5ff;
+}
+
+/* SMOOTH PAGE SCROLL */
+
+html {
+    scroll-behavior: smooth;
+}
+.hero h1 span {
+    animation: neonPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulse {
+    from {
+        text-shadow: 0 0 5px #00e5ff;
+    }
+
+    to {
+        text-shadow:
+            0 0 15px #00e5ff,
+            0 0 35px #008cff;
+    }
+}
+/* Moving Particles Background */
+
+.particles {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.particles span {
+    position: absolute;
+    bottom: -10px;
+    width: 5px;
+    height: 5px;
+    background: #00f7ff;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #00f7ff;
+    animation: floatUp 10s linear infinite;
+}
+
+.particles span:nth-child(1) { left: 10%; animation-delay: 0s; }
+.particles span:nth-child(2) { left: 25%; animation-delay: 2s; }
+.particles span:nth-child(3) { left: 40%; animation-delay: 4s; }
+.particles span:nth-child(4) { left: 55%; animation-delay: 1s; }
+.particles span:nth-child(5) { left: 70%; animation-delay: 3s; }
+.particles span:nth-child(6) { left: 85%; animation-delay: 5s; }
+.particles span:nth-child(7) { left: 35%; animation-delay: 6s; }
+.particles span:nth-child(8) { left: 95%; animation-delay: 2s; }
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+.particles span:nth-child(2n) {
+    background: #a855f7;
+    box-shadow: 0 0 15px #a855f7;
+    width: 7px;
+    height: 7px;
+}
+
+.particles span:nth-child(3n) {
+    background: #ff4fd8;
+    box-shadow: 0 0 15px #ff4fd8;
+    width: 4px;
+    height: 4px;
+}
+
+.particles span:nth-child(4n) {
+    animation-duration: 15s;
+    transition: translate 0.15s ease-out;
+}
+/* Button Hover Effect */
+
+button {
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px #00f7ff;
+}
+.skill-card {
+    transition: all 0.4s ease;
+    transform-style: preserve-3d;
+}
+
+.skill-card:hover {
+    transform:
+        perspective(1000px)
+        rotateX(5deg)
+        rotateY(-5deg)
+        translateY(-10px)
+        scale(1.03);
+
+    border-color: #00e5ff;
+
+    box-shadow:
+        0 0 20px #00e5ff55,
+        0 15px 35px #00000080;
+}
+.skill-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #00e5ff;
+}
+
+.skill-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        #00e5ff,
+        #a855f7,
+        #ff4fd8,
+        transparent
+    );
+    background-size: 300% 300%;
+    animation: neonBorder 5s linear infinite;
+    z-index: -1;
+}
+
+@keyframes neonBorder {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 300% 50%;
+    }
+}
+.typing {
+    color: #00e5ff;
+    border-right: 3px solid #00e5ff;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+/* Neon Mouse Trail */
+
+.mouse-trail {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: #00e5ff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow: 0 0 15px #00e5ff,
+                0 0 30px #00e5ff;
+    transform: translate(-50%, -50%);
+    animation: trailFade 0.7s ease-out forwards;
+}
+
+@keyframes trailFade {
+    0% {
+        opacity: 1;
+        scale: 1;
+    }
+
+    100% {
+        opacity: 0;
+        scale: 0;
+    }
+}
