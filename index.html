@@ -31,6 +31,9 @@
         </h1>
 
         <h2>Future Software Developer</h2>
+        <h3>
+    <span class="typing"></span>
+</h3>
 
         <p>
             Learning. Building. Growing.
@@ -181,6 +184,112 @@
     <footer>
         <p>© 2026 Swathi | Built with curiosity.</p>
     </footer>
+    <div class="particles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+<script>
+const particles = document.querySelectorAll(".particles span");
+
+document.addEventListener("mousemove", (event) => {
+
+    const x = (event.clientX - window.innerWidth / 2) / 40;
+    const y = (event.clientY - window.innerHeight / 2) / 40;
+
+    particles.forEach((particle, index) => {
+
+        const movement = (index + 1) * 0.5;
+
+        particle.style.translate =
+            `${x * movement}px ${y * movement}px`;
+
+    });
+
+});
+</script>
+<script>
+const words = [
+    "Python Developer",
+    "AI Enthusiast",
+    "Technology Explorer"
+];
+
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+const typing = document.querySelector(".typing");
+
+function typeEffect() {
+
+    const currentWord = words[wordIndex];
+
+    if (!deleting) {
+        typing.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === currentWord.length) {
+            deleting = true;
+            setTimeout(typeEffect, 1500);
+            return;
+        }
+
+    } else {
+        typing.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+            deleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+        }
+    }
+
+    setTimeout(typeEffect, deleting ? 50 : 100);
+}
+
+typeEffect();
+</script>
+<script>
+    const colors = [
+    "#00e5ff",
+    "#a855f7",
+    "#ff4fd8",
+    "#00ff99",
+    "#ffffff"
+];
+
+let colorIndex = 0;
+
+document.addEventListener("mousemove", (event) => {
+
+    const trail = document.createElement("span");
+
+    trail.className = "mouse-trail";
+
+    const color = colors[colorIndex];
+
+    trail.style.background = color;
+    trail.style.boxShadow = `0 0 15px ${color}, 0 0 30px ${color}`;
+
+    trail.style.left = event.clientX + "px";
+    trail.style.top = event.clientY + "px";
+
+    document.body.appendChild(trail);
+
+    colorIndex = (colorIndex + 1) % colors.length;
+
+    trail.addEventListener("animationend", () => {
+        trail.remove();
+    });
+
+});
+</script>
 
 </body>
 </html>
