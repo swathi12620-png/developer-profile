@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS AI 2.0</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #020711;
+    color: #d9faff;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* BACKGROUND */
+
+#particles {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+    radial-gradient(circle at 50% 40%, #07304a 0%, transparent 48%),
+    linear-gradient(120deg, #020711, #061524, #020711);
+    z-index: -2;
+}
+
+/* MAIN */
+
+.main {
+    width: 95%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 10px;
+    text-align: center;
+}
+
+/* HEADER */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5px 25px;
+    border-bottom: 1px solid #00d9ff35;
+    margin-bottom: 35px;
+}
+
+.logo {
+    font-size: 19px;
+    letter-spacing: 5px;
+    color: #00eaff;
+    font-weight: bold;
+}
+
+.live {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #00ffb7;
+}
+
+/* TITLE */
+
+.system-label {
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: #00dfff;
+    margin-bottom: 30px;
+}
+
+/* ROBOT AREA */
+
+.robot-area {
+    position: relative;
+    width: 340px;
+    height: 340px;
+    max-width: 90vw;
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* SCANNER RING */
+
+.ring {
+    position: absolute;
+    width: 310px;
+    height: 310px;
+    max-width: 90vw;
+    max-height: 90vw;
+    border: 1px solid #00dfff65;
+    border-radius: 50%;
+    animation: rotate 12s linear infinite;
+}
+
+.ring::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -5px;
+    width: 9px;
+    height: 9px;
+    background: #00eaff;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #00eaff;
+}
+
+.ring-two {
+    width: 270px;
+    height: 270px;
+    border-style: dashed;
+    border-color: #00aaff50;
+    animation: rotate 20s linear infinite reverse;
+}
+
+@keyframes rotate {
+    to { transform: rotate(360deg); }
+}
+
+/* ROBOT HEAD */
+
+.robot {
+    width: 205px;
+    height: 250px;
+    position: relative;
+    border-radius: 75px 75px 55px 55px;
+    background:
+    linear-gradient(135deg, #526a7b, #182c3c 30%, #07111c 70%, #354b5c);
+    border: 2px solid #51dfff;
+    box-shadow:
+    0 0 20px #00bfff80,
+    0 0 65px #007aff35,
+    inset 0 0 25px #9deaff20;
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-9px); }
+}
+
+/* METALLIC DETAILS */
+
+.robot::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 65px;
+    height: 4px;
+    background: #00edff;
+    box-shadow: 0 0 15px #00edff;
+}
+
+.robot::after {
+    content: "N-01";
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: #43cfff;
+}
+
+/* EYES */
+
+.eyes {
+    position: absolute;
+    top: 85px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+}
+
+.eye {
+    width: 34px;
+    height: 18px;
+    border-radius: 50%;
+    background: #00eaff;
+    box-shadow:
+    0 0 12px #00eaff,
+    0 0 30px #00cfff;
+    animation: eyeGlow 2s infinite alternate;
+}
+
+@keyframes eyeGlow {
+    from { opacity: 0.65; }
+    to { opacity: 1; }
+}
+
+/* NOSE */
+
+.nose {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    width: 4px;
+    height: 15px;
+    transform: translateX(-50%);
+    background: #00dfff;
+    box-shadow: 0 0 8px #00dfff;
+}
+
+/* MOUTH */
+
+.mouth {
+    position: absolute;
+    top: 167px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 65px;
+    height: 7px;
+    background: #00eaff;
+    border-radius: 10px;
+    box-shadow: 0 0 12px #00eaff;
+}
+
+.robot.speaking .mouth {
+    animation: talking 0.16s infinite alternate;
+}
+
+@keyframes talking {
+    from {
+        height: 4px;
+        width: 40px;
+    }
+    to {
+        height: 22px;
+        width: 55px;
+    }
+}
+
+/* SIDE ARMOR */
+
+.armor {
+    position: absolute;
+    top: 85px;
+    width: 15px;
+    height: 75px;
+    background: linear-gradient(90deg,#07131e,#456579);
+    border: 1px solid #00dfff;
+}
+
+.left { left: -15px; }
+.right { right: -15px; }
+
+/* SCAN LINE */
+
+.scan {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #00eaff;
+    box-shadow: 0 0 15px #00eaff;
+    opacity: 0.6;
+    animation: scanning 3s linear infinite;
+}
+
+@keyframes scanning {
+    0% { top: 15px; }
+    100% { top: 230px; }
+}
+
+/* TEXT */
+
+h1 {
+    font-size: 42px;
+    letter-spacing: 12px;
+    text-shadow: 0 0 20px #00dfff;
+}
+
+.subtitle {
+    color: #00dfff;
+    font-size: 10px;
+    letter-spacing: 5px;
+    margin-top: 8px;
+}
+
+/* STATUS */
+
+.status-box {
+    max-width: 550px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #00dfff45;
+    background: #061827b5;
+    box-shadow: 0 0 25px #00aaff10;
+}
+
+.status-title {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #00eaff;
+    margin-bottom: 12px;
+}
+
+#dialogue {
+    min-height: 65px;
+    line-height: 1.8;
+    font-size: 14px;
+    color: #c4e7f3;
+}
+
+/* BUTTONS */
+
+.controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+button {
+    padding: 14px 22px;
+    background: transparent;
+    border: 1px solid #00dfff;
+    color: #00eaff;
+    letter-spacing: 2px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #00dfff;
+    color: #020711;
+    box-shadow: 0 0 25px #00dfff;
+}
+
+/* COMMAND AREA */
+
+.command-area {
+    margin: 35px auto;
+    max-width: 550px;
+    display: flex;
+    gap: 8px;
+}
+
+input {
+    flex: 1;
+    min-width: 0;
+    background: #061827;
+    border: 1px solid #00dfff55;
+    color: white;
+    padding: 14px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #00eaff;
+}
+
+input::placeholder {
+    color: #668b9d;
+}
+
+/* FOOTER */
+
+footer {
+    margin-top: 35px;
+    padding: 20px;
+    border-top: 1px solid #00dfff30;
+    color: #50788a;
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+@media(max-width: 500px) {
+    h1 { font-size: 32px; }
+    .robot-area { transform: scale(0.88); }
+    header { gap: 10px; }
+    .logo { font-size: 14px; }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="main">
+
+<header>
+    <div class="logo">NEXUS / AI</div>
+    <div class="live" id="systemStatus">● SYSTEM STANDBY</div>
+</header>
+
+<div class="system-label">
+    ADVANCED NEURAL INTERFACE
+</div>
+
+<!-- ROBOT -->
+
+<div class="robot-area">
+
+    <div class="ring"></div>
+    <div class="ring ring-two"></div>
+
+    <div class="robot" id="robot">
+
+        <div class="armor left"></div>
+        <div class="armor right"></div>
+
+        <div class="scan"></div>
+
+        <div class="eyes">
+            <div class="eye"></div>
+            <div class="eye"></div>
+        </div>
+
+        <div class="nose"></div>
+        <div class="mouth"></div>
+
+    </div>
+</div>
+
+<h1>NEXUS</h1>
+
+<div class="subtitle">
+    AUTONOMOUS INTELLIGENCE
+</div>
+
+<!-- SYSTEM INFORMATION -->
+
+<div class="status-box">
+
+    <div class="status-title">
+        NEURAL COMMUNICATION CHANNEL
+    </div>
+
+    <div id="dialogue">
+        Awaiting initialization command...
+    </div>
+
+</div>
+
+<!-- CONTROLS -->
+
+<div class="controls">
+
+    <button onclick="initializeSystem()">
+        INITIALIZE
+    </button>
+
+    <button onclick="stopSystem()">
+        TERMINATE
+    </button>
+
+</div>
+
+<!-- COMMAND INTERFACE -->
+
+<div class="command-area">
+
+    <input
+    type="text"
+    id="command"
+    placeholder="Enter system command..."
+    >
+
+    <button onclick="sendCommand()">
+        EXECUTE
+    </button>
+
+</div>
+
+<footer>
+    NEXUS CORE V2.0
+    <br><br>
+    ARTIFICIAL INTELLIGENCE // SYSTEM ACTIVE
+</footer>
+
+</div>
+
+<script>
+
+/* PARTICLE BACKGROUND */
+
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+let particles = [];
+
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    particles = Array.from({length: 65}, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        speed: Math.random() * 0.5 + 0.1,
+        size: Math.random() * 2 + 0.5
+    }));
+}
+
+function animateParticles() {
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(p => {
+
+        p.y -= p.speed;
+
+        if (p.y < 0) {
+            p.y = canvas.height;
+            p.x = Math.random() * canvas.width;
+        }
+
+        ctx.fillStyle = "#00dfff";
+        ctx.globalAlpha = 0.6;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+
+    });
+
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(animateParticles);
+}
+
+resizeCanvas();
+animateParticles();
+
+window.addEventListener("resize", resizeCanvas);
+
+
+/* ROBOT VOICE */
+
+const robot = document.getElementById("robot");
+const dialogue = document.getElementById("dialogue");
+const systemStatus = document.getElementById("systemStatus");
+
+function speak(text) {
+
+    if (!("speechSynthesis" in window)) {
+        dialogue.innerText = "Speech engine unavailable.";
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const speech = new SpeechSynthesisUtterance(text);
+
+    speech.lang = "en-US";
+    speech.rate = 0.82;
+    speech.pitch = 0.55;
+    speech.volume = 1;
+
+    speech.onstart = () => {
+        robot.classList.add("speaking");
+        systemStatus.innerText = "● TRANSMITTING";
+        dialogue.innerText = text;
+    };
+
+    speech.onend = () => {
+        robot.classList.remove("speaking");
+        systemStatus.innerText = "● SYSTEM READY";
+    };
+
+    speech.onerror = () => {
+        robot.classList.remove("speaking");
+        systemStatus.innerText = "● VOICE INTERRUPTED";
+    };
+
+    speechSynthesis.speak(speech);
+}
+
+
+/* INITIALIZATION */
+
+const nexusAudio = new Audio("nexus-voice.mp3");
+
+function initializeSystem() {
+
+    speechSynthesis.cancel();
+    nexusAudio.pause();
+    nexusAudio.currentTime = 0;
+
+    systemStatus.innerText = "● INITIALIZING";
+    dialogue.innerText = "Neural interface activated...";
+
+    nexusAudio.onplay = () => {
+        robot.classList.add("speaking");
+        systemStatus.innerText = "● TRANSMITTING";
+    };
+
+    nexusAudio.onended = () => {
+        robot.classList.remove("speaking");
+        systemStatus.innerText = "● SYSTEM READY";
+        dialogue.innerText =
+        "Communication established. Awaiting your command.";
+    };
+
+    nexusAudio.onerror = () => {
+        robot.classList.remove("speaking");
+        systemStatus.innerText = "● AUDIO ERROR";
+        dialogue.innerText =
+        "Audio file unavailable. Check the MP3 filename.";
+    };
+
+    dialogue.innerText = "System boot sequence initiated...";
+
+    nexusAudio.play().catch(() => {
+        dialogue.innerText = "Unable to play audio. Check the audio file.";
+    });
+}
+
+
+/* TERMINATE */
+
+function stopSystem() {
+
+    speechSynthesis.cancel();
+
+    robot.classList.remove("speaking");
+
+    systemStatus.innerText = "● SYSTEM STANDBY";
+
+    dialogue.innerText =
+    "Communication terminated. System standing by.";
+}
+
+
+/* COMMAND PROCESSOR */
+
+function sendCommand() {
+
+    const input = document.getElementById("command");
+    const command = input.value.trim().toLowerCase();
+
+    if (!command) {
+        dialogue.innerText = "No command detected.";
+        return;
+    }
+
+    if (command.includes("hello") || command.includes("hi")) {
+
+        speak("Greetings. Neural communication channel established.");
+
+    }
+
+    else if (command.includes("status")) {
+
+        speak("All core systems are operational. Neural interface is active.");
+
+    }
+
+    else if (command.includes("who are you")) {
+
+        speak("I am Nexus. An advanced artificial intelligence system.");
+
+    }
+
+    else if (command.includes("time")) {
+
+        const now = new Date().toLocaleTimeString();
+
+        speak("Current system time is " + now);
+
+    }
+
+    else if (command.includes("shutdown")) {
+
+        stopSystem();
+
+    }
+
+    else {
+
+        speak("Command received. This function is not yet available in the current system version.");
+
+    }
+
+    input.value = "";
+}
+
+
+/* ENTER KEY */
+
+document.getElementById("command")
+.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        sendCommand();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
